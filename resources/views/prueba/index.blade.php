@@ -35,7 +35,7 @@
                 <th class="px-6 py-3">Año Edición</th>
                 <th class="px-6 py-3">Núm. Etapas</th>
                 <th class="px-6 py-3">Km Totales</th>
-                <th class="px-6 py-3">Ciclista</th>
+                <th class="px-6 py-3">Ganador</th>
                 <th class="px-6 py-3 text-right">Acciones</th>
               </tr>
             </thead>
