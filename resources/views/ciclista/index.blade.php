@@ -74,6 +74,11 @@
                 data-imagen="{{ asset('storage/' . $ciclista->imagen) }}">
                 Eliminar
               </button>
+              |
+              <a href="/ciclistaContrato/{{$ciclista->codigoCiclista}}">
+                <button class="text-green-600 hover:underline">
+                  Ver contratos
+                </button>
             </td>
           </tr>
         @endforeach

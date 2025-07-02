@@ -60,6 +60,11 @@
                  data-nacionalidad="{{ $equipo->nacionalidad->nombreNacionalidad ?? 'N/A' }}">
                 Eliminar
               </button>
+              |
+              <a href="/equipoParticipacion/{{$equipo->codigoEquipo}}">
+                <button class="text-green-600 hover:underline">
+                  Ver participaciones
+                </button>
             </td>
           </tr>
           @endforeach

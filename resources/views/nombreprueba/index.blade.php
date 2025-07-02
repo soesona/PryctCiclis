@@ -19,7 +19,7 @@
   <button type="button" data-bs-toggle="modal" data-bs-target="#mCrearNombrePrueba"
     class="text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex items-center"
     type="button"> <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-2">
-    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /> </svg> Crear nacionalidad</button>
+    <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /> </svg> Crear nombre de Pruebas</button>
 </div>
 
 
@@ -48,8 +48,8 @@
                 Editar
               </button>
               |
-              <button class="text-red-600 hover:underline eliminar" data-bs-toggle="modal" data-bs-target="#mEliminarNacionalidad"
-                data-codigo="{{ $nacionalidad->codigoNacionalidad }}" data-nombre="{{ $nacionalidad->nombreNacionalidad }}">
+              <button class="text-red-600 hover:underline eliminar" data-bs-toggle="modal" data-bs-target="#mEliminarNombrePrueba"
+                data-codigo="{{ $nombresPruebas->codigoNombrePrueba }}" data-nombre="{{ $nombresPruebas->nombrePrueba}}">
                 Eliminar
               </button>
             </td>
@@ -62,112 +62,110 @@
 </div>
 
 
-<div class="modal" id="mCrearNacionalidad">
+<div class="modal" id="mCrearNombrePrueba">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title">Crear nacionalidad</h2>
+        <h2 class="modal-title">Crear Nombre de Prueba</h2>
       </div>
       <div class="modal-body">
-        <form action="/nacionalidad" id="miFormNacionalidad" method="POST">
+        <form action="/nombrepruebas" id="miCrearNombrePrueba" method="POST">
           @csrf
           <div class="form-floating mb-3">
-            <input type="text" id="nombreNacionalidad" name="nombreNacionalidad" class="form-control" maxlength="40" placeholder="Nombre Nacionalidad" required>
-            <label for="nombreNacionalidad">Nombre</label>
+            <input type="text" id="nombrePrueba" name="nombrePrueba" class="form-control" maxlength="100" placeholder="Nombre de la prueba" required>
+            <label for="nombrePrueba">Nombre de la Prueba</label>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="submit" form="miFormNacionalidad"class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800"
-        >Guardar</button>
-        <button type="button" data-bs-dismiss="modal" class="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:focus:ring-yellow-900"
-        >Cancelar</button>
+        <button type="submit" form="miCrearNombrePrueba" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5">Guardar</button>
+        <button type="button" data-bs-dismiss="modal" class="text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5">Cancelar</button>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal" id="mEditarNacionalidad">
+<div class="modal" id="mEditarNombrePrueba">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title">Editar Nacionalidad</h2>
+        <h2 class="modal-title">Editar Nombre de Prueba</h2>
       </div>
       <div class="modal-body">
-        <form action="" id="miFormEditarNacionalidad" method="POST">
-          @method('PUT')
+        <form action="" id="formEditarNombrePrueba" method="POST">
           @csrf
+          @method('PUT')
           <div class="mb-3">
             <label class="form-label">Código</label>
-            <input type="text" id="codigoNacionalidadu" class="form-control" readonly>
+            <input type="text" id="codigoNombrePruebaU" class="form-control" readonly>
           </div>
           <div class="form-floating mb-3">
-            <input type="text" id="nombreNacionalidadu" name="nombreNacionalidadu" class="form-control" required>
-            <label for="nombreNacionalidadu">Nombre</label>
+            <input type="text" id="nombrePruebaU" name="nombrePrueba" class="form-control" required>
+            <label for="nombrePruebaU">Nombre</label>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="submit" form="miFormEditarNacionalidad" class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800" >Guardar cambios</button>
-        <button type="button" data-bs-dismiss="modal" class="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:focus:ring-yellow-900" >Cancelar</button>
+        <button type="submit" form="formEditarNombrePrueba" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5">Guardar cambios</button>
+        <button type="button" data-bs-dismiss="modal" class="text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5">Cancelar</button>
       </div>
     </div>
   </div>
 </div>
 
-<div class="modal" id="mEliminarNacionalidad">
+<div class="modal" id="mEliminarNombrePrueba">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h2 class="modal-title">Eliminar nacionalidad</h2>
+        <h2 class="modal-title">Eliminar Nombre de Prueba</h2>
       </div>
       <div class="modal-body">
-        <form action=""  id="miFormEliminarNacionalidad" method="POST">
+        <form action="" id="formEliminarNombrePrueba" method="POST">
           @csrf
           @method('DELETE')
           <div class="form-floating mb-3">
-            <input type="text" id="codigoNacionalidadp" class="form-control" readonly>
-            <label for="codigoNacionalidadp">Código</label>
+            <input type="text" id="codigoNombrePruebaP" class="form-control" readonly>
+            <label for="codigoNombrePruebaP">Código</label>
           </div>
           <div class="form-floating mb-3">
-            <input type="text" id="nombreNacionalidadp" class="form-control" readonly>
-            <label for="nombreNacionalidadp">Nombre</label>
+            <input type="text" id="nombrePruebaP" class="form-control" readonly>
+            <label for="nombrePruebaP">Nombre</label>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="submit" form="miFormEliminarNacionalidad" class="text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Eliminar</button>
-        <button type="button" data-bs-dismiss="modal" class="text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5 text-center me-2 mb-2 dark:focus:ring-yellow-900">Cancelar</button>
+        <button type="submit" form="formEliminarNombrePrueba" class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5">Eliminar</button>
+        <button type="button" data-bs-dismiss="modal" class="text-white bg-yellow-400 hover:bg-yellow-500 focus:ring-4 focus:ring-yellow-300 font-medium rounded-full text-sm px-5 py-2.5">Cancelar</button>
       </div>
     </div>
   </div>
 </div>
 
+
 <script>
-  $(document).ready(function() {
-    $('.ejecutar').on('click',function() {
-    let codigo=$(this).data('codigo');
-    let nombre=$(this).data('nombre');
+   $(document).ready(function () {
+      $('.ejecutar').on('click', function () {
+      let codigo = $(this).data('codigo');
+      let nombre = $(this).data('nombre');
+
+      $('#codigoNombrePruebaU').val(codigo);
+      $('#nombrePruebaU').val(nombre);
+      document.getElementById('formEditarNombrePrueba').action = '/nombrepruebas/' + codigo;
    
-    $('#codigoNacionalidadu').val(codigo);
-    $('#nombreNacionalidadu').val(nombre);
-
-       document.getElementById('miFormEditarNacionalidad').action = '/nacionalidad/' + codigo;
-
     });
+
   });
   </script>
 
 <script>
   $(document).ready(function () {
-    $('.eliminar').on('click', function () {
+     $('.eliminar').on('click', function () {
       let codigo = $(this).data('codigo');
       let nombre = $(this).data('nombre');
 
-      $('#codigoNacionalidadp').val(codigo);
-      $('#nombreNacionalidadp').val(nombre);
-
-      document.getElementById('miFormEliminarNacionalidad').action = '/nacionalidad/' + codigo;
+      $('#codigoNombrePruebaP').val(codigo);
+      $('#nombrePruebaP').val(nombre);
+      document.getElementById('formEliminarNombrePrueba').action = '/nombrepruebas/' + codigo;
     });
   });
 </script>

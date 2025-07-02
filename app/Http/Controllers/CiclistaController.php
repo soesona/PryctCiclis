@@ -49,7 +49,7 @@ class CiclistaController extends Controller
     $rutaImagen = $request->file('imagen')->store('ciclistas', 'public');
     $datosCiclista->imagen = $rutaImagen;
 }
-
+    $datosCiclista->save();
     return redirect('/ciclista');
     }
 

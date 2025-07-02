@@ -29,7 +29,11 @@ class NombresPruebasController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $nombre = new NombresPruebas();
+        $nombre->nombrePrueba = $request->get('nombrePrueba');
+        $nombre->save();
+
+        return redirect('/nombrepruebas');
     }
 
     /**
@@ -53,7 +57,11 @@ class NombresPruebasController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+       $nombre = NombresPruebas::find($id);
+        $nombre->nombrePrueba = $request->get('nombrePrueba');
+        $nombre->save();
+
+        return redirect('/nombrepruebas');
     }
 
     /**
@@ -61,6 +69,9 @@ class NombresPruebasController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+          $nombre = NombresPruebas::find($id);
+        $nombre->delete();
+
+        return redirect('/nombrepruebas');
     }
 }
