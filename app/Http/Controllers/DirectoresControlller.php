@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Directores;
+use App\Models\Nacionalidad;
 
 class DirectoresControlller extends Controller
 {
@@ -12,6 +14,9 @@ class DirectoresControlller extends Controller
     public function index()
     {
         //
+    $listaDirectores = Directores::with('nacionalidad')->get();
+    $nacionalidades = Nacionalidad::all();
+    return view('director.index', compact('listaDirectores', 'nacionalidades'));
     }
 
     /**
@@ -28,6 +33,25 @@ class DirectoresControlller extends Controller
     public function store(Request $request)
     {
         //
+    $datosDirectores = new Directores();
+    $datosDirectores->codigoDirector = $request->get('codigoDirector');
+    $datosDirectores->nombre = $request->get('nombre');
+    $datosDirectores->apellido = $request->get('apellido');
+    $datosDirectores->fechaNacimiento = $request->get('fechaNacimiento');
+    $datosDirectores->codigoNacionalidad = $request->get('codigoNacionalidad');
+
+    if ($request->hasFile('imagen') && $request->file('imagen')->isValid()) {
+
+    if ($datosDirectores->imagen && \Storage::disk('public')->exists($datosDirectores->imagen)) {
+        \Storage::disk('public')->delete($datosDirectores->imagen);
+    }
+
+
+    $rutaImagen = $request->file('imagen')->store('directores', 'public');
+    $datosDirectores->imagen = $rutaImagen;
+}
+    $datosDirectores->save();
+    return redirect('/director');
     }
 
     /**
@@ -52,6 +76,25 @@ class DirectoresControlller extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $datosDirectores = Directores::find($id);
+
+    $datosDirectores->nombre = $request->get('nombre');
+    $datosDirectores->apellido = $request->get('apellido');
+    $datosDirectores->fechaNacimiento = $request->get('fechaNacimiento');
+    $datosDirectores->codigoNacionalidad = $request->get('codigoNacionalidad');
+
+
+    if ($request->hasFile('imagen') && $request->file('imagen')->isValid()) {
+    if ($datosDirectores->imagen && \Storage::disk('public')->exists($datosDirectores->imagen)) {
+        \Storage::disk('public')->delete($datosDirectores->imagen);
+    }
+
+    $rutaImagen = $request->file('imagen')->store('directores', 'public');
+    $datosDirectores->imagen = $rutaImagen;
+}
+    $datosDirectores->save();
+
+    return redirect('/director');
     }
 
     /**
@@ -60,5 +103,9 @@ class DirectoresControlller extends Controller
     public function destroy(string $id)
     {
         //
+    $director = Directores::find($id);
+    $director->delete(); 
+
+    return redirect('/director');
     }
 }
