@@ -15,11 +15,9 @@ Route::get('/', function () {
   Route::resource('/contratoCiclistas', 'App\Http\Controllers\ContratoCiclistasController');
   Route::resource('/director','App\Http\Controllers\DirectoresControlller');
   Route::resource('/prueba','App\Http\Controllers\PruebaController');
-<<<<<<< Updated upstream
   Route::get('/directorContrato/{codigoDirector}', 'App\Http\Controllers\ContratoDirectorController@showContratoDirector')->name('directorContrato');
   Route::resource('/contratoDirectores', 'App\Http\Controllers\ContratoDirectorController');
-=======
   Route::get('/participacionesequipos/{codigoEquipo}', [ParticipacionesEquiposController::class, 'index'])->name('participaciones.index');
   Route::resource('/participacionesequipos', ParticipacionesEquiposController::class)->except(['index']);
+  
 
->>>>>>> Stashed changes
