@@ -17,7 +17,8 @@ Route::get('/', function () {
   Route::resource('/prueba','App\Http\Controllers\PruebaController');
   Route::get('/directorContrato/{codigoDirector}', 'App\Http\Controllers\ContratoDirectorController@showContratoDirector')->name('directorContrato');
   Route::resource('/contratoDirectores', 'App\Http\Controllers\ContratoDirectorController');
-  Route::get('/participacionesequipos/{codigoEquipo}', [ParticipacionesEquiposController::class, 'index'])->name('participaciones.index');
-  Route::resource('/participacionesequipos', ParticipacionesEquiposController::class)->except(['index']);
-  
+  Route::get('/participacionesequipos/{codigoEquipo}', 'App\Http\Controllers\ParticipacionesEquiposController@index')->name('participaciones.index');
+  Route::post('/participacionesequipos', 'App\Http\Controllers\ParticipacionesEquiposController@store')->name('participacionesequipos.store');
+  Route::put('/participacionesequipos/{id}', 'App\Http\Controllers\ParticipacionesEquiposController@update')->name('participacionesequipos.update');
+  Route::delete('/participacionesequipos/{id}', 'App\Http\Controllers\ParticipacionesEquiposController@destroy')->name('participacionesequipos.destroy');
 

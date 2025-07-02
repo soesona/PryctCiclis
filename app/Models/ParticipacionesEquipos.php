@@ -11,10 +11,13 @@ class ParticipacionesEquipos extends Model
     public $incrementing = true;
     protected $keyType = 'int';
 
-    public function prueba()
+    public function prueba() 
     {
-        return $this->belongsTo(Prueba::class, 'codigoPrueba', 'id');
+    return $this->belongsTo(Prueba::class, 'idPrueba');
     }
+
+
+    
 
     public function equipo()
     {

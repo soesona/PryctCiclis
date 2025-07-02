@@ -61,7 +61,7 @@
                 Eliminar
               </button>
               |
-              <a href="/equipoParticipacion/{{$equipo->codigoEquipo}}">
+              <a href="/participacionesequipos/{{$equipo->codigoEquipo}}">
                 <button class="text-green-600 hover:underline">
                   Ver participaciones
                 </button>

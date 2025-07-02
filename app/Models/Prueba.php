@@ -15,6 +15,7 @@ class Prueba extends Model
         return $this->belongsTo(NombresPruebas::class, 'codigoNombrePrueba', 'codigoNombrePrueba');
     }
 
+
     public function ciclista()
     {
         return $this->belongsTo(Ciclista::class, 'idCiclista', 'codigoCiclista');

@@ -10,20 +10,19 @@ use App\Models\Prueba;
 class ParticipacionesEquiposController extends Controller
 {
     public function index($codigoEquipo)
-{
-    $equipo = Equipo::find($codigoEquipo);
-    $listaParticipaciones = ParticipacionesEquipos::where('codigoEquipo', $codigoEquipo)->get();
-    $pruebasDisponibles = Prueba::all(); // Agregada la variable
+    {
+        $equipo = Equipo::find($codigoEquipo);
+        $listaParticipaciones = ParticipacionesEquipos::where('codigoEquipo', $codigoEquipo)->get();
+        $pruebasDisponibles = Prueba::all();
 
-    return view('participacionesequipos.index', compact('equipo', 'listaParticipaciones', 'pruebasDisponibles'));
-}
-
+        return view('participacionesequipos.index', compact('equipo', 'listaParticipaciones', 'pruebasDisponibles'));
+    }
 
     public function store(Request $request)
     {
         $participacion = new ParticipacionesEquipos();
         $participacion->codigoEquipo = $request->codigoEquipo;
-        $participacion->codigoPrueba = $request->codigoPrueba;
+        $participacion->idPrueba = $request->codigoPrueba;
         $participacion->posicionFinal = $request->posicionFinal;
         $participacion->save();
 
@@ -33,7 +32,7 @@ class ParticipacionesEquiposController extends Controller
     public function update(Request $request, $id)
     {
         $participacion = ParticipacionesEquipos::find($id);
-        $participacion->codigoPrueba = $request->codigoPrueba;
+        $participacion->idPrueba = $request->codigoPrueba; // También se corrige aquí
         $participacion->posicionFinal = $request->posicionFinal;
         $participacion->save();
 
