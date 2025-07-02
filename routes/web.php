@@ -14,3 +14,4 @@ Route::get('/', function () {
   Route::get('/ciclistaContrato/{codigoCiclista}', 'App\Http\Controllers\ContratoCiclistasController@showContratoCiclista')->name('ciclistaContrato');
   Route::resource('/contratoCiclistas', 'App\Http\Controllers\ContratoCiclistasController');
   Route::resource('/director','App\Http\Controllers\DirectoresControlller');
+  Route::resource('/prueba','App\Http\Controllers\PruebaController');
