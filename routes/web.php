@@ -10,3 +10,6 @@ Route::get('/', function () {
   Route::resource('/ciclista','App\Http\Controllers\CiclistaController');
   Route::resource('/equipo','App\Http\Controllers\EquipoController');
   Route::resource('/nombrepruebas','App\Http\Controllers\NombresPruebasController');
+
+  Route::get('/ciclistaContrato/{codigoCiclista}', 'App\Http\Controllers\ContratoCiclistasController@showContratoCiclista')->name('ciclistaContrato');
+  Route::resource('/contratoCiclistas', 'App\Http\Controllers\ContratoCiclistasController');
