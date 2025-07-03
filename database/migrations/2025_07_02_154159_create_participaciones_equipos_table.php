@@ -1,51 +1,27 @@
 <?php
 
-namespace App\Http\Controllers;
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
-use Illuminate\Http\Request;
-use App\Models\ParticipacionesEquipos;
-use App\Models\Equipo;
-use App\Models\Prueba;
-
-class ParticipacionesEquiposController extends Controller
+class CreateParticipacionesEquiposTable extends Migration
 {
-    public function index($codigoEquipo)
+    public function up()
     {
-        $equipo = Equipo::find($codigoEquipo);
-        $listaParticipaciones = ParticipacionesEquipos::where('codigoEquipo', $codigoEquipo)->get();
+        Schema::create('participaciones_equipos', function (Blueprint $table) {
+            $table->id('codigoParticipacionEquipo'); // PK auto_increment
+            $table->unsignedBigInteger('idPrueba');
+            $table->unsignedBigInteger('codigoEquipo');
+            $table->string('posicionFinal', 20);
+            $table->timestamps();
 
-        $pruebasDisponibles = Prueba::all();
-
-        return view('participacionesequipos.index', compact('equipo', 'listaParticipaciones', 'pruebasDisponibles'));
+            $table->foreign('idPrueba')->references('id')->on('pruebas')->onDelete('cascade');
+            $table->foreign('codigoEquipo')->references('codigoEquipo')->on('equipos')->onDelete('cascade');
+        });
     }
 
-    public function store(Request $request)
+    public function down()
     {
-        $participacion = new ParticipacionesEquipos();
-        $participacion->codigoEquipo = $request->codigoEquipo;
-        $participacion->idPrueba = $request->idPrueba;
-        $participacion->posicionFinal = $request->posicionFinal;
-        $participacion->save();
-
-        return redirect('/participacionesequipos/' . $request->codigoEquipo);
-    }
-
-    public function update(Request $request, $id)
-    {
-        $participacion = ParticipacionesEquipos::find($id);
-        $participacion->idPrueba = $request->idPrueba;
-        $participacion->posicionFinal = $request->posicionFinal;
-        $participacion->save();
-
-        return redirect('/participacionesequipos/' . $participacion->codigoEquipo);
-    }
-
-    public function destroy($id)
-    {
-        $participacion = ParticipacionesEquipos::find($id);
-        $codigoEquipo = $participacion->codigoEquipo;
-        $participacion->delete();
-
-        return redirect('/participacionesequipos/' . $codigoEquipo);
+        Schema::dropIfExists('participaciones_equipos');
     }
 }
